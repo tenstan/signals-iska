@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KnockoutJS Counter with Computed Value</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-min.js"></script>
+</head>
+<body>
+  <h1>Counter with KnockoutJS</h1>
+  <p>Count: <span data-bind="text: count"></span></p>
+  <p>Double Count: <span data-bind="text: doubleCount"></span></p>
+  <button data-bind="click: increment">Increment</button>
+
+  <script>
+    function CounterViewModel() {
+      var self = this;
+      self.count = ko.observable(0);
+      self.doubleCount = ko.computed(function() {
+        return self.count() * 2;
+      });
+      self.increment = function() {
+        self.count(self.count() + 1);
+      };
+    }
+
+    ko.applyBindings(new CounterViewModel());
+  </script>
+</body>
+</html>
